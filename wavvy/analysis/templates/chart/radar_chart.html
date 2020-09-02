@@ -1,0 +1,26 @@
+{% extends 'allpage/base.html' %}
+
+{% load staticfiles %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'chart/css/chart.css/' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'weather/css/weather.css' %}" type="text/css">
+
+{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+
+    {% for spot in spot_list %}
+    <div><a class="article-title"  href="{% url 'weather-detail' spot.id %}">{{ spot.spot_name }}</a></div>
+      
+    {% endfor %}
+
+
+  <h2></h2><a href="{% url 'mapspot' %}">위치보기</a>
+
+
+</div>
+
+
+{% endblock content %}

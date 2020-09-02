@@ -1,0 +1,133 @@
+.article-title{
+    text-align: right;
+    color: #575f67;
+  margin: 20px 10px 10px 10px;
+}
+.content-section{
+    box-sizing: content-box;
+    border-radius: 5px; 
+    padding: 10px 10px 10px 10px; 
+    background-color: #e4dedea2;
+    margin: 10px 10px 0px 10px;
+}
+.btncomu{
+    border: 0;
+    outline: 0; 
+    cursor: pointer;  
+    border-radius: 12px; 
+    color:#72CCD0 ;
+}
+.comu-box1{
+    background-color: #72CCD0; 
+    color: white;
+    width: 60px; 
+    padding: 4px 1px 2px 1px;
+    font-size: 12px; 
+    margin: 10px 0px 0px 10px; 
+    border: 0;
+    outline: 0; 
+    cursor: pointer; 
+    border-radius: 15px; 
+}
+.comu-box2{
+  background-color:   #adadada2; 
+  color: white;
+  width: 60px; 
+  margin: 10px 0px 0px 0px;  
+  padding: 4px 1px 2px 1px;
+  font-size: 12px;
+  border: 0; 
+  outline: 0; 
+  cursor: pointer; 
+  border-radius: 15px; 
+}
+.comu-box{
+    box-shadow: 0px 0px 9px #9c9c9c83; 
+    border-radius: 20px; 
+    box-sizing: content-box ;
+    padding-bottom:10px;
+    padding-top:10px;
+    margin-top: 30px;
+    text-align: left;
+}
+/* image */
+.rounded-circle{
+   height: 35px; 
+   width: 35px;
+   
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+    /* 이 밑으로는 코멘트와 관련된 스타일입니다. */
+    /* 이 안에 둘러쌓인 글은 프로그램에 영향을 미치지 않는 메모입니다. */
+    .comment_list {
+        background-color: #f0f1f4;
+        border-bottom: 1px solid #bcbdc3;
+        padding-top: 0.1px;
+    }
+    .right{
+        float:right ;
+        padding: 5px 5px 5px 5px;
+
+
+    }
+    .comment {
+        background-color: #fff;
+        border-radius: 30px;
+        margin: 15px;
+        padding: 15px;
+        margin-bottom: 0;
+    }
+
+    .comment__date {
+        margin: 0 15px;
+        padding: 8px 15px;
+        padding-bottom: 0px;
+        font-size: 13px;
+    }
+    .btn{
+       background-color: #adadada2;
+       width: 60px;
+       height: 25px;
+       color: white; 
+       margin: 5px 0px 0px 5px; 
+       padding: 0px 0px 0px 0px;
+       border: 0; 
+       outline: 0; 
+       cursor: pointer; 
+       border-radius: 15px; 
+            
+    }
+    .name {
+        font-weight: bold;
+        color: #445994;
+    }
+
+    .form-wrapper {
+        padding: 15px;
+    }
+
+    /* 똑같은 스타일을 적용하고 싶으면 ,를 입력해주면 됩니다. */
+    .form-wrapper input,
+    .form-wrapper textarea {
+        border: 1px solid #ddd;
+        width: 100%;
+        padding: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        margin-top: 2px;
+        margin-bottom: 5px;
+    }
+
+    button {
+        border: 1px solid #405ea3;
+        background-color: #4967ad;
+        color: #fff;
+        font-weight: 500;
+        font-size: 15px;
+        padding: 3px 16px;
+        border-radius: 2px;
+    }
+

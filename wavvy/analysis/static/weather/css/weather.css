@@ -1,0 +1,31 @@
+.bordertable,.table, .table-striped{
+    overflow: auto;
+}
+
+.one_time{
+    float: left;
+    padding: 0 10px 0 10px;
+}
+.panel-head{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.panel{
+    padding: 15px;
+}
+.content{
+    border: 0.1rem solid #F4F5F5;
+}
+
+.weekly_time{
+    padding: 10px 15px;
+    color: #333838;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    background-color: #E5E9E9;
+    border-bottom: none;
+    border-top-left-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+}

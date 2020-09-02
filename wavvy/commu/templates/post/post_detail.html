@@ -1,0 +1,49 @@
+{% extends 'allpage/base.html' %}
+{% load staticfiles %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'comu/css/comu.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ object.author }}</a>
+        <small class="text-muted">{{ object.pub_date|date:"F d Y Af" }}</small>
+        {% if object.author == user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ object.title }}</h2>
+      <p class="article-content">{{ object.body }}</p>
+      <hr>
+
+<!-- comment 2 -->
+<div class="form-wrapper">
+    <span>Comments</span>
+<form method="POST" action="/comu/post/newreply">
+    {% csrf_token %}
+    <input type="hidden" value="{{post.id}}" name="blog">
+    댓글 작성 : <input type="text" name="comment_body" />
+    <button type="submit" class="btn btn-secondary">작성</button>
+</form>
+
+</div> 
+  {% for comment in post.comments.all %}    
+<div class="comment_list">
+    <div class="comment"><span class="name"><img class="rounded-circle article-img" src="{{ comment.comment_user.profile.image.url }}">{{comment.comment_user}}</span> {{ comment.comment_body }}</div>
+    <div class="comment__date">{{ comment.comment_date }} </div>
+</div>
+{% endfor %}
+
+<hr>
+    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-home' %}">목록으로</a>
+  </article>
+  </div>
+{% endblock content %}

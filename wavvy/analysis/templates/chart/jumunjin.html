@@ -1,0 +1,200 @@
+{% extends 'allpage/base.html' %}
+
+{% load staticfiles %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'weather/css/weather.css/' %}" type="text/css">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+<div class='container'>
+<h2>주문진 해변</h2>
+  <canvas id="myRadarChart" style="height:30vh; width:50vw"></canvas>
+
+    <div class="content">
+        <div class='weekly_time'>{{ dt1 }}</div>
+        <div class="bordertable">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">시간</th>
+                    <th scope="col">온도</th>
+                    <th scope="col">수온</th>
+                    <th scope="col">파도</th>
+                    <th scope="col">파도방향</th>
+                    <th scope="col">피리어드</th>
+                    <th scope="col">바람방향</th>
+                    <th scope="col">바람속도</th>
+                </tr>
+            </thead>
+                {% for forcast in weather_data|slice:":1" %}
+                        <tr>    
+                            <th scope="row">00</th>
+                            <td>{{ forcast.airTemperature }}°C</td>
+                            <td>{{ forcast.waterTemperature }}°C</a></td>
+                            <td>{{ forcast.waveHeight }}m</td>
+                            <td class='direction'><i class='icon icon-near_me'></i></td>
+                            <td>{{ forcast.wavePeriod }}s</td>
+                            <td>{{ forcast.windDirection }}</td>
+                            <td>{{ forcast.gust }}kts</td>
+                        </tr>
+                {% endfor %}
+                {% for forcast in weather_data|slice:"1:2" %}
+                        <tr>    
+                            <th scope="row">03</th>
+                            <td>{{ forcast.airTemperature }}</td>
+                            <td>{{ forcast.waterTemperature }}</a></td>
+                            <td>{{ forcast.waveHeight }}</td>
+                            <td>{{ forcast.waveDirection }}</td>
+                            <td>{{ forcast.wavePeriod }}</td>
+                            <td>{{ forcast.windDirection }}</td>
+                            <td>{{ forcast.gust }}</td>
+                        </tr>
+                {% endfor %}
+                {% for forcast in weather_data|slice:"2:3" %}
+                        <tr>    
+                            <th scope="row">06</th>
+                            <td>{{ forcast.airTemperature }}</td>
+                            <td>{{ forcast.waterTemperature }}</a></td>
+                            <td>{{ forcast.waveHeight }}</td>
+                            <td>{{ forcast.waveDirection }}</td>
+                            <td>{{ forcast.wavePeriod }}</td>
+                            <td>{{ forcast.windDirection }}</td>
+                            <td>{{ forcast.gust }}</td>
+                        </tr>
+                {% endfor %}
+                {% for forcast in weather_data|slice:"3:4" %}
+                        <tr>    
+                            <th scope="row">09</th>
+                            <td>{{ forcast.airTemperature }}</td>
+                            <td>{{ forcast.waterTemperature }}</a></td>
+                            <td>{{ forcast.waveHeight }}</td>
+                            <td>{{ forcast.waveDirection }}</td>
+                            <td>{{ forcast.wavePeriod }}</td>
+                            <td>{{ forcast.windDirection }}</td>
+                            <td>{{ forcast.gust }}</td>
+                        </tr>
+                {% endfor %}
+                {% for forcast in weather_data|slice:"4:5" %}
+                        <tr>    
+                            <th scope="row">12</th>
+                            <td>{{ forcast.airTemperature }}</td>
+                            <td>{{ forcast.waterTemperature }}</a></td>
+                            <td>{{ forcast.waveHeight }}</td>
+                            <td>{{ forcast.waveDirection }}</td>
+                            <td>{{ forcast.wavePeriod }}</td>
+                            <td>{{ forcast.windDirection }}</td>
+                            <td>{{ forcast.gust }}</td>
+                        </tr>
+                {% endfor %}
+                {% for forcast in weather_data|slice:"5:6" %}
+                        <tr>    
+                            <th scope="row">15</th>
+                            <td>{{ forcast.airTemperature }}</td>
+                            <td>{{ forcast.waterTemperature }}</a></td>
+                            <td>{{ forcast.waveHeight }}</td>
+                            <td>{{ forcast.waveDirection }}</td>
+                            <td>{{ forcast.wavePeriod }}</td>
+                            <td>{{ forcast.windDirection }}</td>
+                            <td>{{ forcast.gust }}</td>
+                        </tr>
+                {% endfor %}
+                {% for forcast in weather_data|slice:"6:7" %}
+                        <tr>    
+                            <th scope="row">18</th>
+                            <td>{{ forcast.airTemperature }}</td>
+                            <td>{{ forcast.waterTemperature }}</a></td>
+                            <td>{{ forcast.waveHeight }}</td>
+                            <td>{{ forcast.waveDirection }}</td>
+                            <td>{{ forcast.wavePeriod }}</td>
+                            <td>{{ forcast.windDirection }}</td>
+                            <td>{{ forcast.gust }}</td>
+                        </tr>
+                {% endfor %}
+                {% for forcast in weather_data|slice:"7:8" %}
+                        <tr>    
+                            <th scope="row">21</th>
+                            <td>{{ forcast.airTemperature }}</td>
+                            <td>{{ forcast.waterTemperature }}</a></td>
+                            <td>{{ forcast.waveHeight }}</td>
+                            <td>{{ forcast.waveDirection }}</td>
+                            <td>{{ forcast.wavePeriod }}</td>
+                            <td>{{ forcast.windDirection }}</td>
+                            <td>{{ forcast.gust }}</td>
+                        </tr>
+                {% endfor %}
+                
+
+                  
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+            
+</div>
+
+  {% block scripts %}
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script>
+   {% for forcast in weather_data %}
+  $(document).ready(function() {
+    $(".direction").css({'transform': 'rotate(' + {{ forcast.waveDirection }} + 'deg)'});
+});
+{% endfor %}
+
+
+  var ctx = document.getElementById('myRadarChart');
+  var myRadarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [{
+        label: '# of Votes',
+        data: [9, 7, 5, 5, 7, 5],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scale: {
+        angleLines: {
+          display: false
+        },
+        ticks: {
+          suggestedMin: 0,
+          suggestedMax: 10
+        }
+      }
+    }
+  });
+
+
+</script>
+    <script src="{% static 'weather/js/weather.js' %}"></script>
+  {% endblock %}
+  
+
+
+{% endblock content %}

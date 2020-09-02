@@ -1,0 +1,82 @@
+{% extends 'allpage/base.html' %}
+
+{% load staticfiles %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'comu/css/comu.css' %}" />
+{% endblock %}
+{% block content %}
+
+<!--<link rel="stylesheet" href="{% static 'post/main.css' %}" type="text/css">-->
+<div class='container'>
+<br>
+
+<form class="form-inline my-2 my-md-0" method="get" action="{% url 'search' %}">
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="b" value="{{b}}">
+</form>
+
+<div class="article-title" >
+<a class="article-title"  href="{% url 'post-create' %}">글쓰기</a>
+</div>
+</p>
+<div class="comu-box" >
+  <div>
+    <input  class="comu-box1" type="button" value="▼ 인기순" >
+  <input class="comu-box2" value="▼ 죽도" type="button">
+  {% for post in posts %}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" >
+        <div class="media-body">
+          <div class="article-metadata" style=" color: #72CCD0;">
+          
+            <a class="article-title" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+            <small> 등산/동해안 </small>
+            <small style="color: #969696fb;"> {{ post.pub_date|date:"m/d Af"}}</small>
+          </div>
+          <a class="article-title"  href="{% url 'post-detail' post.id %}">{{ post.title }}
+          <div >
+           </a>
+            <button class="btn" type="button" > <img src="{% static 'videos/comu_heart.png' %}"> 24 </button>
+    <a  href="{% url 'post-detail' pk=post.pk %}"><button class="btn" type="button" >
+      <img src="{% static 'videos/comu_box.png' %}"> {{post.comments.count }}</button></a>
+    
+          </div>
+        </div>
+          </article>
+        </article>
+    {% endfor %}
+<br>
+    {% if is_paginated %}
+        <div class="row">
+              <div class="col-md-12 text-center">
+                <div class="site-block-27">
+                  <ul>
+                    
+                    {% if page_obj.has_previous %}
+                    <li><a href="?page=1">First</a></li>
+                    <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+                    {% endif %}
+                    
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                      <li class="active"><a href="?page={{ num }}">{{ num }}</a></li>
+                    {% elif num > page_obj.number|add:'-5' and num < page_obj.number|add:'5' %}
+                      <li><a href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                      <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+                      <li><a href="?page={{ page_obj.paginator.num_pages }}">Last</a></li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+          </div>
+    {% endif %}
+</div>
+</div>
+{% endblock content %}
+
+

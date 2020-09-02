@@ -1,0 +1,29 @@
+{% extends 'allpage/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'login/css/login.css' %}" />
+{% endblock %}
+{% block content %}
+<div class='container'>
+<div class="content-section">
+<h1>회원정보 수정</h1>
+  <div class="media">
+    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
+    </div>
+  </div>
+  <form method="POST" action="" enctype='multipart/form-data'>
+    <legend>profile info</legend>
+    {% csrf_token %}
+    {{ u_form|crispy }}
+    {{ p_form|crispy }}
+    <input type="submit" name="Submit" />
+  </form>
+
+  <a href="{% url 'logout' %}" class="ui item active">로그 아웃</a>
+</div>
+</div>
+{% endblock %}

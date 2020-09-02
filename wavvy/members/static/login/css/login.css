@@ -1,0 +1,13 @@
+legend{
+    text-align: center;
+   
+}
+div { text-align: center; }
+/* image */
+.rounded-circle{
+    width: 100px;
+    height: 100px; 
+    border-radius: 70%;
+    overflow: hidden;
+
+}

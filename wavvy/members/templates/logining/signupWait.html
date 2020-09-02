@@ -1,0 +1,29 @@
+{% extends 'allpage/base.html' %}
+
+{% load socialaccount %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% providers_media_js %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'login/css/login.css' %}" />
+{% endblock %}
+{% block content %}
+<hr style="margin-top : 1px;">
+<div class='container'>
+  <div>
+    <p>
+      <img style='width: 125px; height: 100px; margin-top: 100px;' src="{% static 'main/img/favicon.ico' %}" alt="" />        </a></p>
+  
+      <p>
+        <img  src="{% static '/logo/Let’s_get_Wavvy.png' %}" alt="" />
+        </a></p>
+    </div>
+   
+
+    <div> <h3>회원가입 인증 이메일이 발송되었습니다. <br>
+        발송 된 링크를 눌러 인증을 완료해주세요</h3>
+    </div>
+</div>
+
+{% endblock %}

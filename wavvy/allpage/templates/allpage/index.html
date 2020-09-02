@@ -1,0 +1,106 @@
+{% extends 'allpage/base.html' %}
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'comu/css/comu.css' %}" />
+{% endblock %}
+{% block content %}
+
+<!--
+content
+<br>
+ {% if user.is_authenticated %}
+    <a href='{% url "profile"%}'>마이페이지</a>
+    {% else %}
+  {% endif %}
+ Main -->
+
+<img src="{% static 'videos/main_mini.png' %}" style="width:100%; height:auto;" >
+
+<div class='script' style="line-height: 1.5;" >
+	<h4 style="color: #72CCD0;line-height: 0.0; ">새로운 시작을 응원해 주세요!</h4><br>
+		<div class="content"> 한국에서 처음 접하게 된 초보 서퍼의 서핑 대장정.<br>
+		계속되는 도전을 함께 응원해주세요.<br><br>
+</div>
+	 <input type="button" href="주소입력" 
+	 style="background-image: url('/static/videos/main_video_button.png'); 
+	 height: 29px; width: 126px; color: aliceblue; border: 0; outline: 0; cursor: pointer; border-radius: 12px; " value="영상 보러가기" > 
+</div>
+	
+<hr>
+
+
+<div class='container' >
+	<div id="main">
+		<div class="inner">
+			<section class="tiles">
+				<article class="style1">
+					<span class="image">
+						<img src="" alt="" />
+					</span>
+					<a href="{% url 'blog-home' %}"></a>
+						<h4 style="color: #72CCD0;">커뮤니티</h4>
+						<div class="content" style=" line-height: 1.0em;">
+							<p>실시간으로 소통하고 질문하세요.</p>
+						</div>
+						<div class="comu-box" >
+							<div class="content">
+						<input  class="comu-box1" type="button" value="▼ 인기순" >
+						<input class="comu-box2" value="▼ 죽도" type="button">	
+					
+						{% for post in posts|slice:":2" %}
+					    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" >
+          <div class="media-body">
+            <div class="article-metadata" style=" color: #72CCD0;">
+            
+              <a class="article-title" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+              <small> 등산/동해안 </small>
+              <small style="color: #969696fb;"> {{ post.pub_date|date:"m/d Af"}}</small>
+            </div>
+            <a class="article-title"  href="{% url 'post-detail' post.id %}">{{ post.title }}
+            <div >
+             </a>
+              <button class="btn" type="button" > <img src="{% static 'videos/comu_heart.png' %}"> 24 </button>
+			<a  href="{% url 'post-detail' pk=post.pk %}"><button class="btn" type="button" >
+				<img src="{% static 'videos/comu_box.png' %}"> {{post.comments.count }}</button></a>
+			
+						</div>
+					</div>
+						</article>
+						{% endfor %}
+				
+
+					</div>
+					
+				</article>
+				<a href="{% url 'blog-home' %}"><small class="right"> 커뮤니티 더보기 </small></a>
+				<article class="style2">
+					<span class="image">
+						<img src="" alt="" />
+					</span>
+					<a href="{% url 'mapspot' %}">
+						<h2>SPOT</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+
+				<article class="style4">
+					<span class="image">
+						<img src="" alt="" />
+					</span>
+					<a href="{% url 'grap' %}">
+						<h2>grap</h2>
+						<div class="content">
+							<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+						</div>
+					</a>
+				</article>
+			</section>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
